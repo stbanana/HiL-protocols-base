@@ -33,6 +33,7 @@
 #define _PARSE_STATE_CKSUM_L   9  // CKSUM获得低八位
 #define _PARSE_STATE_CKSUM_H   10 // CKSUM获得高八位
 /* Private function prototypes -----------------------------------------------*/
+extern void HiLPB_Split_CMD(_HILPB_COM *pB);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -122,7 +123,7 @@ void HiLPB_Frame_Parse(_HILPB_COM *pB)
             /* 进行校验和检查 */
             if(pB->Parse.CkSum == pB->Runtime.CkSum)
             {
-                // 触发解析
+                HiLPB_Split_CMD(pB); // 进行分流解析
             }
             else
             {
